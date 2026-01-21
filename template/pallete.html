@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block title %}Color Palettes | OutfytAI{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+
+  <!-- Page Title -->
+  <h2 class="text-xl font-semibold text-center">
+    Clothing Color Palettes
+  </h2>
+
+  <p class="text-secondary text-sm text-center">
+    Choose color combinations that work well together for outfits.
+  </p>
+
+  <!-- PALETTE CARD -->
+  <div class="space-y-4">
+
+    <!-- Casual Palette -->
+    <div class="bg-white/40 backdrop-blur-lg rounded-2xl p-4 shadow">
+      <h3 class="font-semibold mb-2">Casual Everyday</h3>
+
+      <div class="flex gap-2 mb-2">
+        <div class="w-10 h-10 rounded-lg bg-[#4A6FA5]"></div>
+        <div class="w-10 h-10 rounded-lg bg-[#EAEAEA]"></div>
+        <div class="w-10 h-10 rounded-lg bg-[#2F2F2F]"></div>
+      </div>
+
+      <p class="text-xs text-secondary">
+        Blue + Grey + Black → Perfect for daily wear and college outfits.
+      </p>
+    </div>
+
+    <!-- Formal Palette -->
+    <div class="bg-white/40 backdrop-blur-lg rounded-2xl p-4 shadow">
+      <h3 class="font-semibold mb-2">Formal / Office</h3>
+
+      <div class="flex gap-2 mb-2">
+        <div class="w-10 h-10 rounded-lg bg-[#1F2937]"></div>
+        <div class="w-10 h-10 rounded-lg bg-[#6B7280]"></div>
+        <div class="w-10 h-10 rounded-lg bg-[#FFFFFF] border"></div>
+      </div>
+
+      <p class="text-xs text-secondary">
+        Navy + Grey + White → Clean and professional look.
+      </p>
+    </div>
+
+    <!-- Summer Palette -->
+    <div class="bg-white/40 backdrop-blur-lg rounded-2xl p-4 shadow">
+      <h3 class="font-semibold mb-2">Summer Light</h3>
+
+      <div class="flex gap-2 mb-2">
+        <div class="w-10 h-10 rounded-lg bg-[#FDE68A]"></div>
+        <div class="w-10 h-10 rounded-lg bg-[#93C5FD]"></div>
+        <div class="w-10 h-10 rounded-lg bg-[#FFFFFF] border"></div>
+      </div>
+
+      <p class="text-xs text-secondary">
+        Yellow + Sky Blue + White → Fresh and breathable for hot weather.
+      </p>
+    </div>
+
+    <!-- Winter Palette -->
+    <div class="bg-white/40 backdrop-blur-lg rounded-2xl p-4 shadow">
+      <h3 class="font-semibold mb-2">Winter Dark</h3>
+
+      <div class="flex gap-2 mb-2">
+        <div class="w-10 h-10 rounded-lg bg-[#111827]"></div>
+        <div class="w-10 h-10 rounded-lg bg-[#374151]"></div>
+        <div class="w-10 h-10 rounded-lg bg-[#7C2D12]"></div>
+      </div>
+
+      <p class="text-xs text-secondary">
+        Black + Charcoal + Brown → Warm and stylish winter outfits.
+      </p>
+    </div>
+
+    <!-- Streetwear -->
+    <div class="bg-white/40 backdrop-blur-lg rounded-2xl p-4 shadow">
+      <h3 class="font-semibold mb-2">Streetwear</h3>
+
+      <div class="flex gap-2 mb-2">
+        <div class="w-10 h-10 rounded-lg bg-[#DC2626]"></div>
+        <div class="w-10 h-10 rounded-lg bg-[#000000]"></div>
+        <div class="w-10 h-10 rounded-lg bg-[#F9FAFB]"></div>
+      </div>
+
+      <p class="text-xs text-secondary">
+        Red + Black + White → Bold, modern, and high-contrast style.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}
