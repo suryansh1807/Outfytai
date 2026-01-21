@@ -4,21 +4,40 @@
 {% block content %}
 <div class="space-y-6">
 
+  <!-- Page Title -->
   <h2 class="text-xl font-semibold text-center">
     Upload Your Clothes
   </h2>
 
-  <!-- Upload Box -->
+  <!-- Upload Form -->
   <form method="POST" enctype="multipart/form-data" class="space-y-4">
 
+    <!-- Upload Box -->
     <label class="block border-2 border-dashed border-secondary
-                  rounded-2xl p-8 text-center cursor-pointer bg-white">
-      <p class="text-secondary text-sm">
-        Tap to upload images
+                  rounded-2xl p-6 text-center cursor-pointer bg-white">
+
+      <p class="text-secondary text-sm mb-2">
+        Tap to upload clothing images
       </p>
-      <input type="file" name="images" multiple hidden />
+
+      <p id="file-count" class="text-xs text-primary hidden">
+        0 images selected
+      </p>
+
+      <input
+        type="file"
+        name="images"
+        multiple
+        accept="image/*"
+        hidden
+        onchange="previewImages(event)"
+      />
     </label>
 
+    <!-- Image Preview Grid -->
+    <div id="preview" class="grid grid-cols-3 gap-2"></div>
+
+    <!-- Submit Button -->
     <button type="submit"
       class="w-full bg-primary text-light py-4 rounded-2xl font-medium">
       Get Outfit Suggestion
@@ -26,35 +45,70 @@
 
   </form>
 
-  <!-- RESULT PLACEHOLDER (Backend will inject here) -->
+  <!-- AI RESULT SECTION -->
   {% if outfits %}
-<div class="space-y-4">
+  <div class="space-y-4 mt-6">
 
-  {% for outfit in outfits %}
-  <div class="
-    bg-white/30 backdrop-blur-lg
-    border border-white/40
-    rounded-2xl p-5 shadow-xl
-  ">
-    <h3 class="font-semibold text-lg">
-      {{ outfit.title }}
+    <h3 class="text-lg font-semibold text-center">
+      Suggested Outfits
     </h3>
 
-    <ul class="text-sm mt-2 space-y-1">
-      <li>👕 {{ outfit.top }}</li>
-      <li>👖 {{ outfit.bottom }}</li>
-      <li>👟 {{ outfit.shoes }}</li>
-    </ul>
+    {% for outfit in outfits %}
+    <div class="
+      bg-white/30 backdrop-blur-lg
+      border border-white/40
+      rounded-2xl p-4 shadow-xl
+    ">
 
-    <p class="text-secondary text-xs mt-3">
-      {{ outfit.note }}
-    </p>
+      {% if outfit.image_url %}
+      <img src="{{ outfit.image_url }}"
+           alt="Outfit Image"
+           class="w-full rounded-xl mb-3">
+      {% endif %}
+
+      <h4 class="font-semibold text-base">
+        {{ outfit.title }}
+      </h4>
+
+      <ul class="text-sm mt-2 space-y-1">
+        <li>👕 {{ outfit.top }}</li>
+        <li>👖 {{ outfit.bottom }}</li>
+        <li>👟 {{ outfit.shoes }}</li>
+      </ul>
+
+      <p class="text-secondary text-xs mt-3">
+        {{ outfit.note }}
+      </p>
+    </div>
+    {% endfor %}
+
   </div>
-  {% endfor %}
+  {% endif %}
 
 </div>
-{% endif %}
 
+<!-- Image Preview Script -->
+<script>
+  function previewImages(event) {
+    const files = event.target.files;
+    const preview = document.getElementById("preview");
+    const countText = document.getElementById("file-count");
 
-</div>
+    preview.innerHTML = "";
+
+    if (files.length > 0) {
+      countText.classList.remove("hidden");
+      countText.textContent = `${files.length} image(s) selected`;
+    }
+
+    Array.from(files).forEach(file => {
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+      img.className =
+        "w-full h-24 object-cover rounded-xl border border-secondary";
+
+      preview.appendChild(img);
+    });
+  }
+</script>
 {% endblock %}
